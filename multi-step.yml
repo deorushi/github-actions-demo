@@ -18,5 +18,5 @@ jobs:
 
       - name: Step4 - create and read a files
         run: |
-          echo "Hello github actions from step4" > note.txt
+          echo "Hello github actions from step4. Thanks" > note.txt
           cat note.txt
