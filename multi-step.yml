@@ -1,0 +1,22 @@
+name: multi-steps
+
+on: [push]
+
+jobs:
+  basic-jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step1 - Say Hello
+        run:: echo "Hello from step1"
+
+      - name: Step2 - show current directory
+        run: pwd
+
+      - name: Step3 - list files
+        run: ls -latest
+
+      - name: Step4 - create and read a files
+        run: |
+          echo "Hello github actions from step4" > note.txt
+          cat note.txt
