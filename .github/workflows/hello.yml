@@ -1,6 +1,9 @@
 name: hello world workflow
 
-on: [push]
+on:
+  push:
+    paths:
+      - '.github/workflows/hello.yml'
 
 jobs:
   say-hello:
