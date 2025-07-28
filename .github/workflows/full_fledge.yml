@@ -11,10 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  strategy:
-    fail-fast: true
-    matrix:
-      node-version: [14, 16, 18]
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [14, 16, 18]
 
     steps:
       - name: checkout code
