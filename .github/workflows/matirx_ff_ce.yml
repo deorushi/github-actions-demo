@@ -1,0 +1,26 @@
+name: matrix_fail-fast_cont_on_err
+
+on:
+  workflow_dispatch
+
+jobs:
+  matrix-example:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14, 16, 18]
+
+
+    steps:
+      - name: show version
+        run: echo "Running with node version ${{ matrix.node-version }}"
+      
+      - name: Simulate failure for node 16
+        if: matrix.node-version == 16
+        run exit 1
+      
+      - name: This runs even if previous step fails
+        continue-on-error: true
+        run: continuing even after failure on Node ${{ matrix.node-version }}
+      
