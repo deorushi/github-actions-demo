@@ -15,7 +15,7 @@ jobs:
         run: pwd
 
       - name: Step3 - list files
-        run: ls -l
+        run: ls -la
 
       - name: Step4 - create and read a files
         run: |
