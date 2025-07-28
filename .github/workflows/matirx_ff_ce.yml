@@ -18,7 +18,7 @@ jobs:
       
       - name: Simulate failure for node 16
         if: matrix.node-version == 16
-        run exit 1
+        run: exit 1
       
       - name: This runs even if previous step fails
         continue-on-error: true
