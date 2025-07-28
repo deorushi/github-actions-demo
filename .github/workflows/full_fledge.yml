@@ -27,7 +27,7 @@ jobs:
 
   test:
     needs: build
-    runs-on: ubunutu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: checkout code
