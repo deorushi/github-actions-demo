@@ -15,8 +15,6 @@ jobs:
     steps:
                 
       - name: github actor
-        env:
-          MY_VAR: 'steps'
         run: echo "Actor ${{ github.actor }}"
 
       - name: github repository name
@@ -46,5 +44,7 @@ jobs:
         run: echo "Job Name ${{ github.job }}"
 
       - name: Variable
+        env:
+          MY_VAR: 'steps'
         run: echo "My variable is from ${{ env.MY_VAR }}"
 
