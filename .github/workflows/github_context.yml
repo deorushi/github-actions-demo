@@ -46,5 +46,5 @@ jobs:
       - name: Variable
         env:
           MY_VAR: 'steps'
-        run: echo "My variable is from ${{ env.MY_VAR }}"
+        run: echo "My variable is from ${{ vars.UI_VAR }}"
 
