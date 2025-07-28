@@ -1,0 +1,38 @@
+name: github context
+
+on:
+  workflow_dispatch
+
+jobs:
+  github-context-jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: github actor
+        run: echo "Actor: ${{ github.actor }}"
+
+      - name: github repository name
+        run: echo "Repo Name: ${{ github.repository }}"
+
+      - name: github reference
+        run: echo "Reference: ${{ github.ref }}"
+
+      - name: github commit SHA
+        run: echo "Commit SHA: ${{ github.sha }}"
+
+      - name: github workflow name
+        run: echo "Workflow name: ${{ github.workflow }}"
+
+      - name: github event name
+        run: echo "Event name: ${{ github.event }}"
+
+      - name: github repository owner
+        run: echo "Repository owner: ${{ github.repository_owner }}"
+
+      - name: github run ID and run number
+        run: |
+          echo "Run ID: ${{ github.run_id }}"
+          echo "Run number: ${{ github.run_number }}"
+
+      - name: github job name
+        run: echo "Job Name: ${{ github.job }}"
