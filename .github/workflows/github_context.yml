@@ -7,13 +7,12 @@ on:
 
 jobs:
   github-context-jobs:
+  env:
+      MY_VAR: 'jobs'
   strategy:
     matrix:
       - os: [ubuntu-latest, windows]
     runs-on: ubuntu-latest
-
-    env:
-      MY_VAR: 'jobs'
 
     steps:
                 
