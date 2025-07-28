@@ -1,7 +1,7 @@
 name: github context
 
 env:
-  MY_VAR: workflow
+  MY_VAR: 'workflow'
 on:
   workflow_dispatch
 
@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MY_VAR: jobs
+      MY_VAR: 'jobs'
 
     steps:
               
       - name: github actor
         env:
-          MY_VAR: steps
+          MY_VAR: 'steps'
         run: echo "Actor ${{ github.actor }}"
 
       - name: github repository name
@@ -46,5 +46,5 @@ jobs:
         run: echo "Job Name ${{ github.job }}"
 
       - name: Variable
-        run: echo "My variable is from $MY_VAR"
+        run: echo "My variable is from ${{ env.MY_VAR }}"
 
