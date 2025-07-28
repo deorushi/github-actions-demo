@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Step1 - Say Hello
-        run:: echo "Hello from step1"
+        run: echo "Hello from step1"
 
       - name: Step2 - show current directory
         run: pwd
