@@ -1,9 +1,7 @@
 name: multi-steps
 
 on:
-  push:
-    paths:
-      - '.github/workflows/multi-step.yml'
+  workflow_dispatch
 
 jobs:
   basic-jobs:
