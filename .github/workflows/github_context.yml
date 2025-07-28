@@ -7,6 +7,9 @@ on:
 
 jobs:
   github-context-jobs:
+  strategy:
+    matrix:
+      - os: [ubuntu-latest, windows]
     runs-on: ubuntu-latest
 
     env:
