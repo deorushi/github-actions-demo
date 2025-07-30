@@ -28,7 +28,7 @@ jobs:
         id: set-msg
         run: |
           echo "Deploying version ${{ github.event.inputs.version }} to Dev"
-          echo "message-deployed ${{github.event.inputs.version}} to Dev" >> $GITHUB_OUTPUT
+          echo "message=deployed ${{github.event.inputs.version}} to Dev" >> $GITHUB_OUTPUT
       - name: print global dev
         run: echo "Tag ${{ env.GLOBAL_TAG }}"
 
