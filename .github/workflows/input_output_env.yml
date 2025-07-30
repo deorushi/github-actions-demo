@@ -1,4 +1,4 @@
-name:  Multi Env Build
+name: Multi Env Build
 
 on:
   workflow_dispatch:
@@ -16,19 +16,20 @@ on:
 env:
   GLOBAL_TAG: 'MyProject'
 
-
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
     environment: Dev
     outputs:
-      dev-message: ${{steps.set-msg.outsputs.message}}
+      dev-message: ${{ steps.set-msg.outputs.message }}
     steps:
       - name: Deploy to Dev
         id: set-msg
         run: |
           echo "Deploying version ${{ github.event.inputs.version }} to Dev"
-          echo "message=deployed ${{github.event.inputs.version}} to Dev" >> $GITHUB_OUTPUT
+          echo "message=Deployed ${{ github.event.inputs.version }} to Dev" >> $GITHUB_OUTPUT
+      - name: Show secret
+        run: echo "Dev Secret: ${{ secrets.ENV_SECRET }}"
       - name: print global dev
         run: echo "Tag ${{ env.GLOBAL_TAG }}"
 
@@ -44,18 +45,21 @@ jobs:
         run: |
           echo "Deploying version ${{ github.event.inputs.version }} to TEST"
           echo "message=Deployed ${{ github.event.inputs.version }} to TEST" >> $GITHUB_OUTPUT
+      - name: Show secret
+        run: echo "Test Secret: ${{ secrets.ENV_SECRET }}"
 
-  
   deploy-prod:
     needs: deploy-test
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: https://your-production-url.com
+      url: https://example.com
     steps:
       - name: Deploy to Production
         run: |
           echo "Deploying version ${{ github.event.inputs.version }} to PRODUCTION"
+          echo "Prod Secret: ${{ secrets.ENV_SECRET }}"
       - name: Use Outputs
         run: |
-          echo "Previous: ${{ needs.deploy-test.outputs.test-message }}"
+          echo "Dev Output: ${{ needs.deploy-dev.outputs.dev-message }}"
+          echo "Test Output: ${{ needs.deploy-test.outputs.test-message }}"
