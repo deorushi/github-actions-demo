@@ -1,0 +1,56 @@
+name:  Multi Env Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release Version"
+        required: true
+        default: "1.0.0"
+
+env:
+  GLOBAL_TAG: 'MyProject'
+
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment: Dev
+    outputs:
+      dev-message: ${{steps.set-msg.outsputs.message}}
+    steps:
+      - name: Deploy to Dev
+        id: set-msg
+        run: |
+          echo "Deploying version ${{ github.event.inputs.version }} to Dev"
+          echo "message-deployed ${{github.events.inputs.version}} to Dev" >> $GITHUB_OUTPUT
+      - name: print global dev
+        run: echo "Tag ${{ env.GLOBAL_TAG }}"
+
+  deploy-test:
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    environemnt: Test
+    outputs:
+      test-message: ${{ steps.set-msg.outputs.message }}
+    steps:
+      - name: Deploy to Test
+        id: set-msg
+        run: |
+          echo "Deploying version ${{ github.event.inputs.version }} to TEST"
+          echo "message=Deployed ${{ github.event.inputs.version }} to TEST" >> $GITHUB_OUTPUT
+
+  
+  deploy-prod:
+    needs: deploy-test
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: https://your-production-url.com
+    steps:
+      - name: Deploy to Production
+        run: |
+          echo "Deploying version ${{ github.event.inputs.version }} to PRODUCTION"
+      - name: Use Outputs
+        run: |
+          echo "Previous: ${{ needs.deploy-test.outputs.test-message }}"
