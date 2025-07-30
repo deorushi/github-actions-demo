@@ -29,7 +29,7 @@ jobs:
           echo "Deploying version ${{ github.event.inputs.version }} to Dev"
           echo "message=Deployed ${{ github.event.inputs.version }} to Dev" >> $GITHUB_OUTPUT
       - name: Show secret
-        run: echo "Dev Secret: ${{ secrets.ENV_SECRET }}"
+        run: echo "Dev Secret ${{ secrets.ENV_SECRET }}"
       - name: print global dev
         run: echo "Tag ${{ env.GLOBAL_TAG }}"
 
@@ -46,7 +46,7 @@ jobs:
           echo "Deploying version ${{ github.event.inputs.version }} to TEST"
           echo "message=Deployed ${{ github.event.inputs.version }} to TEST" >> $GITHUB_OUTPUT
       - name: Show secret
-        run: echo "Test Secret: ${{ secrets.ENV_SECRET }}"
+        run: echo "Test Secret ${{ secrets.ENV_SECRET }}"
 
   deploy-prod:
     needs: deploy-test
