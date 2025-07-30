@@ -30,7 +30,7 @@ jobs:
   deploy-test:
     needs: deploy-dev
     runs-on: ubuntu-latest
-    environemnt: Test
+    environment: Test
     outputs:
       test-message: ${{ steps.set-msg.outputs.message }}
     steps:
